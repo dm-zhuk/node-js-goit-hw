@@ -1,24 +1,10 @@
-import { Server } from "socket.io";
+import { WebSocketServer } from "ws";
 import { createServer } from "http";
-
-const httpServer = createServer();
-const wss = new Server(httpServer, { cors: { origin: "*" } });
-
-wss.on("connection", (socket) => {
-  socket.on("chat-msg", (data) => {
-    socket.broadcast.emit("chat-msg", data);
-  });
-  socket.on("disconnect", () => {
-    console.log("frontend chat closed");
-  });
-});
-httpServer.listen(8080);
-
-/* import { createServer } from "http";
 import { Server } from "socket.io";
+import express from "express";
 
 const app = express();
-const httpServer = createServer();
+const http = createServer(app);
 const io = new Server(http);
 const wss = new WebSocketServer({ port: 8080 });
 
@@ -48,13 +34,12 @@ wss.on("connection", (ws) => {
 
 console.log("WebSocket server is running on port 8080");
 
-wss.on("message", (message) => {
-  console.log(`received msg: ${message}`);
+// wss.on("message", (message) => {
+//   console.log(`received msg: ${message}`);
 
-  ws.send(`You said: ${message}`);
-});
+//   ws.send(`You said: ${message}`);
+// });
 
-ws.on("close", () => {
-  console.log("A client disconnected");
-});
- */
+// ws.on("close", () => {
+//   console.log("A client disconnected");
+// });

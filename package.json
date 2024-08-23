@@ -13,6 +13,9 @@
   "author": "Dmytro Zhuk <dm.zhuk@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "esm": "^3.2.25",
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
     "ws": "^8.18.0"
   },
   "devDependencies": {
